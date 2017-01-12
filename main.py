@@ -13,4 +13,11 @@ print '*            命令行版               *'.decode('utf-8').encode(type)
 print '*************************************'.decode('utf-8').encode(type)
 
 # Main process
-Bilibili.getBilibili().cmdPrint()
+errorMsgs = []
+errorMsgs.append(Bilibili.getBilibili().cmdPrint())
+
+# End statistics
+print '出错的网站数量：{}'.format(len(errorMsgs)).decode('utf-8').encode(type)
+for i in errorMsgs:
+    print i.decode('utf-8').encode(type)
+print ''

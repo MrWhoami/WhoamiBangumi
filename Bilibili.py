@@ -3,9 +3,9 @@
 import requests
 from HTMLParser import HTMLParser
 from Bangumi import Bangumi
-
-# Parse the bilibili bangumi page and generate
+ 
 class BilibiliParser(HTMLParser):
+    """Parse the bilibili bangumi page and generate a bangumi object"""
     bangumi = Bangumi.empty('bilibili')
 
     def handle_starttag(self, tag, attrs):
@@ -16,6 +16,7 @@ class BilibiliParser(HTMLParser):
         pass
 
 def getBilibili():
+    """bilibili.tv processing function"""
     # Get bilibili bangumi HTML
     r = requests.post("http://bangumi.bilibili.com/anime/timeline")
     # Test if the HTML get successfully
