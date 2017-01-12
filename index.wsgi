@@ -13,7 +13,7 @@ render = web.template.render(templates_root)
 
 class Hello:
     def GET(self):
-        return render.hello()
+        return "Using web.py"
 
 app = web.application(urls, globals()).wsgifunc()
 
