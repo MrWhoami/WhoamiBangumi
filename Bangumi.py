@@ -34,11 +34,13 @@ class Bangumi:
     def cmdPrint(self):
         """Print out the Bangumi class"""
         if self.errorFlag:
-            return self.name
+            print (self.name + ' 出错啦 QAQ').decode('utf-8').encode(type)
+            return 1
         print '--------------------------------------------------------------------------------'
-        print '                                 ', self.name.decode('utf-8').encode(type)
+        print self.name.decode('utf-8').encode(type).center(80)
         print '--------------------------------------------------------------------------------'
         for i in self.bangumi:
-            print '| {0} |'.format(i[1].decode('utf-8').encode(type))
+            print '===== {0} ====='.format(i[1].decode('utf-8').encode(type)).center(80)
             for j in i[0]:
-                print j[0].decode('utf-8').encode(type) + ' - ' + j[1].decode('utf-8').encode(type)
+                print j[0].decode('utf-8').encode(type).rjust(38), ' -- ', j[1].decode('utf-8').encode(type)
+        return 0

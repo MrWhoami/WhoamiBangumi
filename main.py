@@ -7,17 +7,16 @@ import sys
 type = sys.getfilesystemencoding()
 
 # Title lol
-print '*************************************'.decode('utf-8').encode(type)
-print '* Whoami 的中国视频网站动画番剧列表 *'.decode('utf-8').encode(type)
-print '*            命令行版               *'.decode('utf-8').encode(type)
-print '*************************************'.decode('utf-8').encode(type)
+print '*************************************'.decode('utf-8').encode(type).center(80)
+print '* Whoami 的中国视频网站动画番剧列表 *'.decode('utf-8').encode(type).center(80)
+print '*              命令行版             *'.decode('utf-8').encode(type).center(80)
+print '*************************************'.decode('utf-8').encode(type).center(80)
 
 # Main process
-errorMsgs = []
-errorMsgs.append(Bilibili.getBilibili().cmdPrint())
+errorCount = 0
+errorCount += Bilibili.getBilibili().cmdPrint()
+
 
 # End statistics
-print '出错的网站数量：{}'.format(len(errorMsgs)).decode('utf-8').encode(type)
-for i in errorMsgs:
-    print i.decode('utf-8').encode(type)
+print '\n出错的网站数量：{}'.format(errorCount).decode('utf-8').encode(type)
 print ''

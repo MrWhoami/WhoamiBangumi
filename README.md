@@ -16,7 +16,7 @@
 * Git （如果你想用 git clone 命令下载代码）
 * Python 2.7
 * Python 2.7 库
-    * Requests
+    * BeautifulSoup 4
 
 ### 命令行版本
 Linux 系统下使用任意 shell 运行下面的命令。  
