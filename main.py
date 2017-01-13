@@ -1,7 +1,8 @@
 # -*- coding:utf_8 -*-
 from Bangumi import Bangumi
-import Bilibili
-import Youku
+from Bilibili import getBilibili
+from Youku import getYouku
+from Iqiyi import getIqiyi
 import sys
 
 # For Chinese printing orz
@@ -15,9 +16,9 @@ print '*************************************'.decode('utf-8').encode(type).cente
 
 # Main process
 errorCount = 0
-errorCount += Bilibili.getBilibili().cmdPrint()
-errorCount += Youku.getYouku().cmdPrint()
-
+errorCount += getBilibili().cmdPrint()
+errorCount += getYouku().cmdPrint()
+errorCount += getIqiyi().cmdPrint()
 
 # End statistics
 print '\n出错的网站数量：{}'.format(errorCount).decode('utf-8').encode(type)
