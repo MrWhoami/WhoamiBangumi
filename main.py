@@ -22,7 +22,7 @@ errorCount += getBilibili().cmdPrint()
 errorCount += getYouku().cmdPrint()
 errorCount += getIqiyi().cmdPrint()
 errorCount += getPPTV().cmdPrint()
-#errorCount += getAcfun().cmdPrint()
+errorCount += getAcfun().cmdPrint()
 
 # End statistics
 print u'\n出错的网站数量：{}'.format(errorCount).encode(type)
