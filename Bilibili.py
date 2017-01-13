@@ -8,17 +8,17 @@ BilibiliURL = "http://bangumi.bilibili.com/anime/timeline"
 
 def decodeWeekday(wds):
     """Decode Unicode weekday into number"""
-    if wds == '周一'.decode('utf-8'):
+    if wds == u'周一':
         return 1
-    elif wds == '周二'.decode('utf-8'):
+    elif wds == u'周二':
         return 2
-    elif wds == '周三'.decode('utf-8'):
+    elif wds == u'周三':
         return 3
-    elif wds == '周四'.decode('utf-8'):
+    elif wds == u'周四':
         return 4
-    elif wds == '周五'.decode('utf-8'):
+    elif wds == u'周五':
         return 5
-    elif wds == '周六'.decode('utf-8'):
+    elif wds == u'周六':
         return 6
     else:
         return 0
@@ -56,8 +56,8 @@ def getBilibili():
             if b.name == None:
                 continue
             binfo = b.find(attrs={"class":"r-i"})
-            bname = binfo.find('span').string.encode('utf-8')
-            bupdate = binfo.find(attrs={"class":"update-info"}).string.encode('utf-8')
+            bname = binfo.find('span').string
+            bupdate = binfo.find(attrs={"class":"update-info"}).string
             bangumi.add(wd, bname, bupdate)
     return bangumi
     

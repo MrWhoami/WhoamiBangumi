@@ -14,8 +14,8 @@ def getIqiyi():
         res = urllib2.urlopen(req)
         html = res.read()
     except URLError:
-        return Bangumi.empty('爱奇艺')
-    bangumi = Bangumi('爱奇艺')
+        return Bangumi.empty(u'爱奇艺')
+    bangumi = Bangumi(u'爱奇艺')
     # Give the HTML to BeautifulSoup
     # TODO: Change the parser to lxml for better performance
     soup = BeautifulSoup(html, "html.parser")
@@ -27,8 +27,8 @@ def getIqiyi():
         wd = int(child['data-day']) + 1
         binfos = child.find_all('h4')
         for binfo in binfos:
-            bname, bsep, bupdate = binfo.string.partition('：'.decode('utf-8'))
-            bangumi.add(wd, bname.encode('utf-8'), bupdate.encode('utf-8'))
+            bname, bsep, bupdate = binfo.string.partition(u'：')
+            bangumi.add(wd, bname, bupdate)
     return bangumi
     
     

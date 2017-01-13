@@ -6,14 +6,14 @@ type = sys.getfilesystemencoding()
 
 class Bangumi:
     """A class for the bangumi in a website"""
-    bangumi = [([], '周日'),
-               ([], '周一'),
-               ([], '周二'),
-               ([], '周三'),
-               ([], '周四'),
-               ([], '周五'),
-               ([], '周六')]
-    name = 'Nothing'
+    bangumi = [([], u'周日'),
+               ([], u'周一'),
+               ([], u'周二'),
+               ([], u'周三'),
+               ([], u'周四'),
+               ([], u'周五'),
+               ([], u'周六')]
+    name = u'Nothing'
     errorFlag = False
 
     def __init__(self, name):
@@ -34,13 +34,13 @@ class Bangumi:
     def cmdPrint(self):
         """Print out the Bangumi class"""
         if self.errorFlag:
-            print (self.name + ' 出错啦 QAQ').decode('utf-8').encode(type)
+            print (self.name + u' 出错啦 QAQ').encode(type)
             return 1
         print '--------------------------------------------------------------------------------'
-        print self.name.decode('utf-8').encode(type).center(80)
+        print self.name.encode(type).center(80)
         print '--------------------------------------------------------------------------------'
         for i in self.bangumi:
-            print '===== {0} ====='.format(i[1].decode('utf-8').encode(type)).center(80)
+            print '===== {0} ====='.format(i[1].encode(type)).center(80)
             for j in i[0]:
-                print j[0].decode('utf-8').encode(type).rjust(38), ' -- ', j[1].decode('utf-8').encode(type)
+                print j[0].encode(type).rjust(38), ' -- ', j[1].encode(type)
         return 0

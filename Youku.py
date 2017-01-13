@@ -14,8 +14,8 @@ def getYouku():
         res = urllib2.urlopen(req)
         html = res.read()
     except URLError:
-        return Bangumi.empty('优酷')
-    bangumi = Bangumi('优酷')
+        return Bangumi.empty(u'优酷')
+    bangumi = Bangumi(u'优酷')
     # Give the HTML to BeautifulSoup
     # TODO: Change the parser to lxml for better performance
     soup = BeautifulSoup(html, "html.parser")
@@ -28,9 +28,9 @@ def getYouku():
         div = soup.find(id=lid)
         blist = div.find_all("div", attrs={"class": "v-meta va"})
         for binfo in blist:
-            bupdate = binfo.find("span", attrs={"class": "v-status"}).string.encode("utf-8")
+            bupdate = binfo.find("span", attrs={"class": "v-status"}).string
             btitle = binfo.find(attrs={"class": "v-meta-title"})
-            bname = btitle.find("a").string.encode('utf-8')
+            bname = btitle.find("a").string
             bangumi.add(wd, bname, bupdate)
     return bangumi
     
