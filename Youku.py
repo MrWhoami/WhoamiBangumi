@@ -13,7 +13,7 @@ def getYouku():
     try:
         res = urllib2.urlopen(req)
         html = res.read()
-    except URLError:
+    except urllib2.URLError:
         return Bangumi.empty(u'优酷')
     bangumi = Bangumi(u'优酷')
     # Give the HTML to BeautifulSoup
@@ -26,10 +26,10 @@ def getYouku():
         else:
             lid = "tab_100895_{}".format(wd)
         div = soup.find(id=lid)
-        blist = div.find_all("div", attrs={"class": "v-meta va"})
+        blist = div.find_all("div", class_="v-meta va")
         for binfo in blist:
-            bupdate = binfo.find("span", attrs={"class": "v-status"}).string
-            btitle = binfo.find(attrs={"class": "v-meta-title"})
+            bupdate = binfo.find("span", class_="v-status").string
+            btitle = binfo.find(class_="v-meta-title")
             bname = btitle.find("a").string
             bangumi.add(wd, bname, bupdate)
     return bangumi

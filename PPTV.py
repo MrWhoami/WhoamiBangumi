@@ -12,7 +12,7 @@ def getPPTV():
     try:
         res = urllib2.urlopen(req)
         html = res.read()
-    except URLError:
+    except urllib2.URLError:
         return Bangumi.empty('PPTV')
     bangumi = Bangumi('PPTV')
     # Give the HTML to BeautifulSoup

@@ -30,7 +30,7 @@ def getBilibili():
     try:
         res = urllib2.urlopen(req)
         html = res.read()
-    except URLError:
+    except urllib2.URLError:
         return Bangumi.empty('bilibili')
     bangumi = Bangumi('bilibili')
     # Give the HTML to BeautifulSoup
@@ -48,16 +48,16 @@ def getBilibili():
         if count > 7:
             break
         # Get the week day
-        wdS = child.find(attrs={"class":"week-day"}).string
+        wdS = child.find(class_="week-day").string
         wd = decodeWeekday(wdS)
         # the list of a day
-        blist = child.find(attrs={"class":"bangumi c-list"})
+        blist = child.find(class_="bangumi c-list")
         for b in blist.children:
             if b.name == None:
                 continue
-            binfo = b.find(attrs={"class":"r-i"})
+            binfo = b.find(class_="r-i")
             bname = binfo.find('span').string
-            bupdate = binfo.find(attrs={"class":"update-info"}).string
+            bupdate = binfo.find(class_="update-info").string
             bangumi.add(wd, bname, bupdate)
     return bangumi
     

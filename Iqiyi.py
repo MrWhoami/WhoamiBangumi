@@ -13,7 +13,7 @@ def getIqiyi():
     try:
         res = urllib2.urlopen(req)
         html = res.read()
-    except URLError:
+    except urllib2.URLError:
         return Bangumi.empty(u'爱奇艺')
     bangumi = Bangumi(u'爱奇艺')
     # Give the HTML to BeautifulSoup
