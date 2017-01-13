@@ -1,6 +1,7 @@
 # -*- coding:utf_8 -*-
 from Bangumi import Bangumi
 import Bilibili
+import Youku
 import sys
 
 # For Chinese printing orz
@@ -15,6 +16,7 @@ print '*************************************'.decode('utf-8').encode(type).cente
 # Main process
 errorCount = 0
 errorCount += Bilibili.getBilibili().cmdPrint()
+errorCount += Youku.getYouku().cmdPrint()
 
 
 # End statistics
