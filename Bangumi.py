@@ -18,6 +18,14 @@ class Bangumi:
 
     def __init__(self, name):
         self.name = name
+        self.bangumi = [([], u'周日'),
+                        ([], u'周一'),
+                        ([], u'周二'),
+                        ([], u'周三'),
+                        ([], u'周四'),
+                        ([], u'周五'),
+                        ([], u'周六')]
+        self.errorFlag = False
 
     @staticmethod
     def empty(name):

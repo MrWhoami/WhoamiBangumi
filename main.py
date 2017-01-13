@@ -3,6 +3,7 @@ from Bangumi import Bangumi
 from Bilibili import getBilibili
 from Youku import getYouku
 from Iqiyi import getIqiyi
+from PPTV import getPPTV
 import sys
 
 # For Chinese printing orz
@@ -19,6 +20,7 @@ errorCount = 0
 errorCount += getBilibili().cmdPrint()
 errorCount += getYouku().cmdPrint()
 errorCount += getIqiyi().cmdPrint()
+errorCount += getPPTV().cmdPrint()
 
 # End statistics
 print u'\n出错的网站数量：{}'.format(errorCount).encode(type)
