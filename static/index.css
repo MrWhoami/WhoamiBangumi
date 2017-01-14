@@ -1,0 +1,25 @@
+#header {
+    height: 320px;
+}
+
+#calendar {
+    float: right;
+}
+
+.subtitle {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    text-align: center;
+    border: 1px solid black;
+}
+
+h1, h2, h3, h4, h5 {
+    text-align: center;
+}

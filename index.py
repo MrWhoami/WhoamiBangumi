@@ -1,7 +1,6 @@
-# -*- coding:utf_8 -*-
+# # -*- coding:utf_8 -*-
 import web
 import os
-import sae
 from Bangumi import Bangumi
 from Bilibili import getBilibili
 from Youku import getYouku
@@ -31,6 +30,3 @@ class Index:
 if __name__ == "__main__":
     app = web.application(urls, globals())
     app.run()
-
-app = web.application(urls, globals()).wsgifunc()
-application = sae.create_wsgi_app(app)
