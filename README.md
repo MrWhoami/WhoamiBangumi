@@ -3,7 +3,7 @@
 ## 概要
 中国国内的版权意识也在日益增强中，动画番组也是如此，各个平台只购买了部分番组的版权。有版权意识是件好事，但是找番却变成了一件累人的事情，因此，该工具用于列举中国国内的各个视频网站当期的动画番组版权购买情况。
 
-## 目前计划支持网站
+## 目前支持网站
 * AcFun
 * bilibili
 * 爱奇艺
@@ -49,3 +49,8 @@ python main.py > OUTPUT.txt
 SAE 部署情况下，直接将 master 分支的代码 clone 下来，视情况修改 config.yaml 中的应用名称信息后，按照 SAE 的代码管理方式上传即可。
 
 自己搭建的话，请使用 index.py，按照 <http://webpy.org> 提供的文档进行修改，当然，也要先使用 pip 获取 web.py 的库。
+
+## Bug 与意见提交
+请使用 Github 的 Issue 系统：
+
+![issue](static/issue.png)
