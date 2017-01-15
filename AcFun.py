@@ -13,8 +13,8 @@ def getAcfun():
         res = urllib2.urlopen(req)
         html = res.read()
     except urllib2.URLError:
-        return Bangumi.empty('AcFun')
-    bangumi = Bangumi('AcFun')
+        return Bangumi.empty('AcFun', AcFunURL)
+    bangumi = Bangumi('AcFun', AcFunURL)
     # Give the HTML to BeautifulSoup
     # TODO: Change the parser to lxml for better performance
     soup = BeautifulSoup(html, "html.parser")

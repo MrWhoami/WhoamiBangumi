@@ -31,8 +31,8 @@ def getBilibili():
         res = urllib2.urlopen(req)
         html = res.read()
     except urllib2.URLError:
-        return Bangumi.empty('bilibili')
-    bangumi = Bangumi('bilibili')
+        return Bangumi.empty('bilibili', BilibiliURL)
+    bangumi = Bangumi('bilibili', BilibiliURL)
     # Give the HTML to BeautifulSoup
     # TODO: Change the parser to lxml for better performance
     soup = BeautifulSoup(html, "html.parser")

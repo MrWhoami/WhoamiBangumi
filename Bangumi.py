@@ -14,10 +14,12 @@ class Bangumi:
                ([], u'周五'),
                ([], u'周六')]
     name = u'Nothing'
+    link = 'http://'
     errorFlag = False
 
-    def __init__(self, name):
+    def __init__(self, name, link):
         self.name = name
+        self.link = link
         self.bangumi = [([], u'周日'),
                         ([], u'周一'),
                         ([], u'周二'),
@@ -28,16 +30,18 @@ class Bangumi:
         self.errorFlag = False
 
     @staticmethod
-    def empty(name):
+    def empty(name, link):
         """Create an empty Bangumi class."""
-        b = Bangumi(name)
+        b = Bangumi(name, link)
         b.errorFlag = True
         return b
 
-    def add(self, dayOfWeek, name, episode):
+    def add(self, dayOfWeek, name, update, link=None):
         """Add a new bangumi into the set"""
         dow = dayOfWeek % 7
-        self.bangumi[dow][0].append((name, episode))
+        if link == None:
+            link = self.link
+        self.bangumi[dow][0].append((name, update, link))
 
     def cmdPrint(self):
         """Print out the Bangumi class"""
@@ -72,12 +76,15 @@ class Bangumi:
         for blist in blists:
             indent = listlen - len(blist)
             for i in range(indent):
-                blist.append((' ', ' '))
+                blist.append(('', ' ', ''))
         # Generate the table body
         for i in range(listlen):
             output += '<tr>'
             for j in range(7):
-                output += '<td>{0}<br><em>{1}</em></td>'.format(blists[j][i][0].encode('utf-8'), blists[j][i][1].encode('utf-8'))
+                output += '<td><a href="{blink}">{bname}</a><br><em>{bupdate}</em></td>'.format(
+                    bname=blists[j][i][0].encode('utf-8'),
+                    bupdate=blists[j][i][1].encode('utf-8'),
+                    blink=blists[j][i][2].encode('utf-8'))
             output += '</tr>'
         # Generate the table footer
         output += '</table>'

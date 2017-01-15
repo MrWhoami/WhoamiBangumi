@@ -14,8 +14,8 @@ def getIqiyi():
         res = urllib2.urlopen(req)
         html = res.read()
     except urllib2.URLError:
-        return Bangumi.empty(u'爱奇艺')
-    bangumi = Bangumi(u'爱奇艺')
+        return Bangumi.empty(u'爱奇艺', IqiyiURL)
+    bangumi = Bangumi(u'爱奇艺', IqiyiURL)
     # Give the HTML to BeautifulSoup
     # TODO: Change the parser to lxml for better performance
     soup = BeautifulSoup(html, "html.parser")
