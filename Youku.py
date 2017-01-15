@@ -31,7 +31,8 @@ def getYouku():
             bupdate = binfo.find("span", class_="v-status").string
             btitle = binfo.find(class_="v-meta-title")
             bname = btitle.find("a").string
-            bangumi.add(wd, bname, bupdate)
+            blink = btitle.find('a')['href']
+            bangumi.add(wd, bname, bupdate, blink)
     return bangumi
     
     

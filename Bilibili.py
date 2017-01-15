@@ -58,7 +58,8 @@ def getBilibili():
             binfo = b.find(class_="r-i")
             bname = binfo.find('span').string
             bupdate = binfo.find(class_="update-info").string
-            bangumi.add(wd, bname, bupdate)
+            blink = binfo.find('a')['href']
+            bangumi.add(wd, bname, bupdate, blink)
     return bangumi
     
     

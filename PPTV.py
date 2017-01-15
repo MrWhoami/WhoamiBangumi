@@ -33,7 +33,8 @@ def getPPTV():
             except IndexError:
                 bupdate = ''
             bname = binfodd[0].find('a').string
-            bangumi.add(wd, bname, bupdate)
+            blink = binfodd[0].find('a')['href']
+            bangumi.add(wd, bname, bupdate, blink)
         wd += 1
     return bangumi
     

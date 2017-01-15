@@ -28,7 +28,8 @@ def getIqiyi():
         binfos = child.find_all('h4')
         for binfo in binfos:
             bname, bsep, bupdate = binfo.string.partition(u'：')
-            bangumi.add(wd, bname, bupdate)
+            blink = binfo.parent.parent['href']
+            bangumi.add(wd, bname, bupdate, blink)
     return bangumi
     
     
