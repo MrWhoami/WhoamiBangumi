@@ -42,4 +42,10 @@ python main.py > OUTPUT.txt
 ```
 
 ### 网页版本
-（0.2版本特性）
+网页版本的可以直接在线访问在线 Demo：<http://bangumi.applinzi.com>
+
+如果自己搭建，分为完整的服务器和 SAE 部署两种情况。
+
+SAE 部署情况下，直接将 master 分支的代码 clone 下来，视情况修改 config.yaml 中的应用名称信息后，按照 SAE 的代码管理方式上传即可。
+
+自己搭建的话，请使用 index.py，按照 <http://webpy.org> 提供的文档进行修改，当然，也要先使用 pip 获取 web.py 的库。
