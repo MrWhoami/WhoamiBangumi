@@ -26,10 +26,11 @@ def getAcfun():
         for binfo in binfos:
             bname = binfo.find('b').string
             bupdate = binfo.find('p').string
+            blink = AcFunURL + binfo.find('b').parent['href']
             # Remove special character may cause GBK encoding error
             if '•'.decode('utf-8') in bupdate:
                 bupdate = bupdate[2:]
-            bangumi.add(wd, bname, bupdate)
+            bangumi.add(wd, bname, bupdate, blink)
         wd += 1
     return bangumi
     
