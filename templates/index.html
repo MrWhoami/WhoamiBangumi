@@ -1,19 +1,20 @@
-$def with (blists)
+$def with (blists, result)
 <html>
 <head>
     <meta charset="utf-8">
     <title>Whoami 的中国番组列表</title>
     <link rel="icon" href="/static/favicon.png">
     <link rel="stylesheet" type="text/css" href="/static/index.css">
+    <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
 </head>
 <body>
     <div id="calendar">
         <object classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' width='160' height='320' id='external870289' codebase='http://fpdownload.adobe.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0'>
-            <param name='movie' value='http://www.uniqlo.com/calendar/swf/uqcal_bp_loader.swf?cID=CN&aID=PKG&bgm=1&size=small&bID=870289' />
+            <param name='movie' value='http://www.uniqlo.com/calendar/swf/uqcal_bp_loader.swf?cID=CN&aID=PKG&bgm=0&size=small&bID=870289' />
             <param name='bgcolor' value='#ffffff'>
             <param name='quality' value='high' />
             <param name='allowScriptAccess' value='always' />
-            <embed src = 'http://www.uniqlo.com/calendar/swf/uqcal_bp_loader.swf?cID=CN&aID=PKG&bgm=1&size=small&bID=870289' width='160' height='320' bgcolor='#ffffff' quality='high' allowScriptAccess='always' pluginspage='http://www.adobe.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash'>
+            <embed src = 'http://www.uniqlo.com/calendar/swf/uqcal_bp_loader.swf?cID=CN&aID=PKG&bgm=0&size=small&bID=870289' width='160' height='320' bgcolor='#ffffff' quality='high' allowScriptAccess='always' pluginspage='http://www.adobe.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash'>
             </embed>
         </object>
     </div>
@@ -21,20 +22,30 @@ $def with (blists)
         <h1>Whoami 的中国视频网站动画番剧列表</h1>
         <p class="subtitle"><em class="subtitle">网页版</em>
         <br>看着用就好了，更多的信息参见 <a href="https://github.com/MrWhoami/WhoamiBangumi">https://github.com/MrWhoami/WhoamiBangumi</a></p>
-        <p>
-            <b>注意：</b>
-            <ol>
-                <li>Bilibili 的番组在今天之前的两天显示的是正常的已经更新的内容，而今天之后标记的更新信息均为将要更新的内容，<br>如：今天是周三，则周一、周二显示的是更新之后的内容，周四、周五、周六、周日显示的是即将更新的内容；</li>
-                <li>不显示更新信息的番剧可能是大长篇，也有可能是平台自制的节目；</li>
-            </ol>
-        </p>
+        <div id="hitokoto">一言：<script>hitokoto()</script></div>
     </div>
-    <div id="search"></div>
-    <div id="searchResult"></div>
+    <div id="search">
+        <form action="/" method="get">
+            <input type="search" name="keyword" id="search-input" />
+            <input type="submit" value="找不到不是我的锅" id="search-submit" />
+        </form>
+    </div>
+    <div id="searchResult">
+$if result:
+    $for r in result:
+        <p>$r</p>
+    </div>
     <div id="total-list">
 $for blist in blists:
     $:blist
 <hr/>
+<p>
+    <b>注意：</b>
+    <ol>
+        <li>Bilibili 的番组在今天之前的两天显示的是正常的已经更新的内容，而今天之后标记的更新信息均为将要更新的内容，<br>如：今天是周三，则周一、周二显示的是更新之后的内容，周四、周五、周六、周日显示的是即将更新的内容；</li>
+        <li>不显示更新信息的番剧可能是大长篇，也有可能是平台自制的节目；</li>
+    </ol>
+</p>
 </div>
 </body>
 </html>

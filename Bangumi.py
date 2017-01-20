@@ -89,3 +89,12 @@ class Bangumi:
         # Generate the table footer
         output += '</table>'
         return output
+
+    def cmdSearch(self, keywords):
+        pass
+
+    def getSearch(self, keywords_s):
+        return keywords_s
+
+    def search(self, keywords):
+        pass

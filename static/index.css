@@ -1,25 +1,56 @@
 #header {
-    height: 320px;
+    height: 260px;
 }
 
+#hitokoto {
+    position: relative;
+    top: 30px;
+    left: 10%;
+    font-size: 32px;
+    font-weight: bold;
+    font-family: Hiragino Sans GB,微软雅黑,黑体,Arial,sans-serif;
+    width: 80%;
+}
+
+#hitokoto a{
+    text-decoration: none;
+    color: #545454;
+    text-shadow: 1px 1px 1px #cccccc;
+}
+
+#search {
+    height: 60px;
+    left: 10%;
+    position: relative;
+}
+
+#search-input {
+    height: 40px;
+    width: 66%;
+}
+#search-submit {
+    height: 40px;
+    left: 10px;
+    position: relative;
+    width: 10%;
+}
 #calendar {
     float: right;
 }
-
 .subtitle {
     text-align: center;
 }
-
 table {
-    width: 100%;
+    align-items: center;
     border-collapse: collapse;
+    position: relative;
+    left: 10%;
+    width: 80%;
 }
-
 table, th, td {
-    text-align: center;
     border: 1px solid black;
+    text-align: center;
 }
-
 h1, h2, h3, h4, h5 {
     text-align: center;
 }

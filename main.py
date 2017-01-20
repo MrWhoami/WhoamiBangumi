@@ -28,11 +28,26 @@ print u'*************************************'.encode(type).center(80)
 
 # Main process
 errorCount = 0
-errorCount += getBilibili().cmdPrint()
-errorCount += getYouku().cmdPrint()
-errorCount += getIqiyi().cmdPrint()
-errorCount += getPPTV().cmdPrint()
-errorCount += getAcfun().cmdPrint()
+bilibili = getBilibili()
+acfun = getAcfun()
+pptv = getPPTV()
+iqiyi = getIqiyi()
+youku = getYouku()
+
+if len(sys.argv) == 1:
+    # Print all
+    errorCount += acfun.cmdPrint()
+    errorCount += bilibili.cmdPrint()
+    errorCount += iqiyi.cmdPrint()
+    errorCount += pptv.cmdPrint()
+    errorCount += youku.cmdPrint()
+else:
+    # Print search result
+    errorCount += acfun.cmdSearch(sys.argv[1:])
+    errorCount += bilibili.cmdSearch(sys.argv[1:])
+    errorCount += iqiyi.cmdSearch(sys.argv[1:])
+    errorCount += pptv.cmdSearch(sys.argv[1:])
+    errorCount += youku.cmdSearch(sys.argv[1:])
 
 # End statistics
 print u'\n出错的网站数量：{}'.format(errorCount).encode(type)

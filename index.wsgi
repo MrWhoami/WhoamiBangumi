@@ -19,14 +19,27 @@ render = web.template.render(templates_root)
 
 class Index:
     def GET(self):
-        i = web.input()
+        i = web.input(keyword=None)
+        bilibili = getBilibili()
+        acfun = getAcfun()
+        pptv = getPPTV()
+        iqiyi = getIqiyi()
+        youku = getYouku()
         blists = []
-        blists.append(getBilibili().generateHTMLTable())
-        blists.append(getYouku().generateHTMLTable())
-        blists.append(getIqiyi().generateHTMLTable())
-        blists.append(getPPTV().generateHTMLTable())
-        blists.append(getAcfun().generateHTMLTable())
-        return render.index(blists)
+        blists.append(acfun.generateHTMLTable())
+        blists.append(bilibili.generateHTMLTable())
+        blists.append(iqiyi.generateHTMLTable())
+        blists.append(pptv.generateHTMLTable())
+        blists.append(youku.generateHTMLTable())
+        searchResult = None
+        if i.keyword:
+            searchResult = []
+            searchResult.extend(acfun.getSearch(i.keyword))
+            searchResult.extend(bilibili.getSearch(i.keyword))
+            searchResult.extend(iqiyi.getSearch(i.keyword))
+            searchResult.extend(pptv.getSearch(i.keyword))
+            searchResult.extend(youku.getSearch(i.keyword))
+        return render.index(blists, searchResult)
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
