@@ -1,15 +1,14 @@
-#header {
-    height: 260px;
+#wrapper {
+    width: 1129px;
+    margin: auto;
 }
 
 #hitokoto {
     position: relative;
     top: 30px;
-    left: 10%;
     font-size: 32px;
     font-weight: bold;
     font-family: Hiragino Sans GB,微软雅黑,黑体,Arial,sans-serif;
-    width: 80%;
 }
 
 #hitokoto a{
@@ -18,34 +17,43 @@
     text-shadow: 1px 1px 1px #cccccc;
 }
 
+#calendar-search {
+    height: 200px;
+}
+
 #search {
-    height: 60px;
-    left: 10%;
-    position: relative;
+    width: 100%;
+    clear: both;
+    float: left;
 }
 
 #search-input {
     height: 40px;
-    width: 66%;
+    width: 80%;
 }
 #search-submit {
     height: 40px;
-    left: 10px;
+    left: 5%;
     position: relative;
-    width: 10%;
+    width: 15%;
 }
-#calendar {
+#calendar-div {
     float: right;
+    width: 160px;
+    height: inherit;
 }
 .subtitle {
     text-align: center;
 }
+
+body {
+    background: #f9f9f9;
+}
+
 table {
     align-items: center;
     border-collapse: collapse;
-    position: relative;
-    left: 10%;
-    width: 80%;
+    width: 100%;
 }
 table, th, td {
     border: 1px solid black;
@@ -53,4 +61,30 @@ table, th, td {
 }
 h1, h2, h3, h4, h5 {
     text-align: center;
+}
+
+#calendar{
+    background:#000;
+    color:#FFF;
+    font-size:0.8em;
+}
+#tittle{
+    font-size:1.4em;
+    padding:4px 0.55em;
+}
+#days th {
+    font-weight:bold;
+    text-align:center;
+    padding:4px 0.55em;
+}
+#calendar td{
+    text-align:center;
+    padding:4px 0.55em;
+}
+#today{
+    color:#F00;
+    font-weight:bold;
+}
+.clear {
+    clear: both;
 }
