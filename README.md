@@ -32,7 +32,7 @@ Windows 系统下推荐使用 Git Shell 运行下面的命令。
 
 ```bash
 git clone https://github.com/MrWhoami/whoamibangumi.git
-python main.py
+python cli.py
 ```
 
 如果想要输出到文件，请使用系统自带的重定向，同样是 shell 命令，文件名并不一定是 `OUTPUT.txt`：
