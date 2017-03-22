@@ -1,18 +1,19 @@
 # -*- coding:utf_8 -*-
 import sys
+import re
 
 # For Chinese printing orz
-type = sys.getfilesystemencoding()
+charset = sys.getfilesystemencoding()
+
+def dow2string(dow):
+    '''Day of week number to string'''
+    weekString = [u'周日', u'周一', u'周二', u'周三', 
+                  u'周四', u'周五', u'周六']
+    return weekString[dow % 7]
 
 class Bangumi:
     """A class for the bangumi in a website"""
-    bangumi = [([], u'周日'),
-               ([], u'周一'),
-               ([], u'周二'),
-               ([], u'周三'),
-               ([], u'周四'),
-               ([], u'周五'),
-               ([], u'周六')]
+    bangumi = [[], [], [], [], [], [], []]
     name = u'Nothing'
     link = 'http://'
     errorFlag = False
@@ -20,13 +21,7 @@ class Bangumi:
     def __init__(self, name, link):
         self.name = name
         self.link = link
-        self.bangumi = [([], u'周日'),
-                        ([], u'周一'),
-                        ([], u'周二'),
-                        ([], u'周三'),
-                        ([], u'周四'),
-                        ([], u'周五'),
-                        ([], u'周六')]
+        self.bangumi = [[], [], [], [], [], [], []]
         self.errorFlag = False
 
     @staticmethod
@@ -41,20 +36,20 @@ class Bangumi:
         dow = dayOfWeek % 7
         if link == None:
             link = self.link
-        self.bangumi[dow][0].append((name, update, link))
+        self.bangumi[dow].append((name, update, link))
 
     def cmdPrint(self):
         """Print out the Bangumi class"""
         if self.errorFlag:
-            print (self.name + u' 出错啦 QAQ').encode(type)
+            print (self.name + u' 出错啦 QAQ').encode(charset)
             return 1
         print '--------------------------------------------------------------------------------'
-        print self.name.encode(type).center(80)
+        print self.name.encode(charset).center(80)
         print '--------------------------------------------------------------------------------'
-        for i in self.bangumi:
-            print '===== {0} ====='.format(i[1].encode(type)).center(80)
-            for j in i[0]:
-                print j[0].encode(type).rjust(38), ' -- ', j[1].encode(type)
+        for i in range(7):
+            print '===== {0} ====='.format(dow2string(i).encode(charset)).center(80)
+            for j in self.bangumi[i]:
+                print j[0].encode(charset).rjust(38), ' -- ', j[1].encode(charset)
         return 0
 
     def generateHTMLTable(self):
@@ -70,9 +65,9 @@ class Bangumi:
         blists = []
         listlen = 0
         for b in self.bangumi:
-            blists.append(b[0])
-            if len(b[0]) > listlen:
-                listlen = len(b[0])
+            blists.append(b)
+            if len(b) > listlen:
+                listlen = len(b)
         for blist in blists:
             indent = listlen - len(blist)
             for i in range(indent):
@@ -90,11 +85,31 @@ class Bangumi:
         output += '</table>'
         return output
 
-    def cmdSearch(self, keywords):
-        pass
+    def cmdSearch(self, en_keywords):
+        '''Called by command line. Print the result to the console.'''
+        keywords = []
+        for keyword in en_keywords:
+            keywords.append(keyword.decode(charset))
+        result = self.search(keywords)
+        if len(result) == 0:
+            return 1
+        else:
+            print '===== {0} ====='.format(self.name.encode(charset)).center(80)
+            for b in result:
+                print (b[1] + ' - ' + b[2]).encode(charset)
+            return 0
+        
 
     def getSearch(self, keywords_s):
         return keywords_s
 
     def search(self, keywords):
-        pass
+        '''Inner search function. Need a list of keywords. Return a list of search result.'''
+        resultList = []
+        for dow in range(7):
+            for b in self.bangumi[dow]:
+                for keyword in keywords:
+                    if keyword in b[0]:
+                        resultList.append((dow, b[0], b[1], b[2]))
+                        break
+        return resultList
