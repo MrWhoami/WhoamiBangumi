@@ -1,4 +1,4 @@
-# # -*- coding:utf_8 -*-
+# -*- coding:utf_8 -*-
 import web
 import os
 from Bangumi import Bangumi

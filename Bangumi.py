@@ -96,12 +96,23 @@ class Bangumi:
         else:
             print '===== {0} ====='.format(self.name.encode(charset)).center(80)
             for b in result:
-                print (b[1] + ' - ' + b[2]).encode(charset)
+                print (b[1] + ' - ' + b[2] + ' - ' + dow2string(b[0])).encode(charset)
             return 0
         
 
     def getSearch(self, keywords_s):
-        return keywords_s
+        keywords = keywords_s.split()
+        results = self.search(keywords)
+        resStrs = []
+        for result in results:
+            resStr = '<a href="{blink}">{bname} - {bsrc} - {bdow} - {bupdate}</a>'.format(
+                    bdow    = dow2string(result[0]).encode('utf-8'),
+                    bname   = result[1].encode('utf-8'),
+                    bupdate = result[2].encode('utf-8'),
+                    blink   = result[3].encode('utf-8'),
+                    bsrc    = self.name.encode('utf-8'))
+            resStrs.append(resStr)
+        return resStrs
 
     def search(self, keywords):
         '''Inner search function. Need a list of keywords. Return a list of search result.'''
