@@ -18,13 +18,13 @@ def printNotice():
     """.format(date.today().strftime('%A'))
 
 # For Chinese printing orz
-type = sys.getfilesystemencoding()
+charset = sys.getfilesystemencoding()
 
 # Title lol
-print u'*************************************'.encode(type).center(80)
-print u'* Whoami 的中国视频网站动画番剧列表 *'.encode(type).center(80)
-print u'*              命令行版             *'.encode(type).center(80)
-print u'*************************************'.encode(type).center(80)
+print u'*************************************'.encode(charset).center(80)
+print u'* Whoami 的中国视频网站动画番剧列表 *'.encode(charset).center(80)
+print u'*              命令行版             *'.encode(charset).center(80)
+print u'*************************************'.encode(charset).center(80)
 
 # Main process
 errorCount = 0
@@ -50,5 +50,5 @@ else:
     errorCount += youku.cmdSearch(sys.argv[1:])
 
 # End statistics
-print u'\n出错的网站数量：{}'.format(errorCount).encode(type)
+print u'\n出错的网站数量：{}'.format(errorCount).encode(charset)
 printNotice()
