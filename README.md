@@ -48,7 +48,7 @@ python main.py > OUTPUT.txt
 
 SAE 部署情况下，直接将 master 分支的代码 clone 下来，视情况修改 config.yaml 中的应用名称信息后，按照 SAE 的代码管理方式上传即可。
 
-自己搭建的话，请使用 index.py，按照 <http://webpy.org> 提供的文档进行修改，当然，也要先使用 pip 获取 web.py 的库。
+自己搭建的话，将 index.wsgi 重命名为 index.py，然后运行 index.py 即可，当然，也要先使用 pip 获取 web.py 的库。
 
 ## Bug 与意见提交
 请使用 Github 的 Issue 系统：
