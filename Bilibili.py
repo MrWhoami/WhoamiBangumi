@@ -56,6 +56,8 @@ def getBilibili():
             if b.name == None:
                 continue
             binfo = b.find(class_="r-i")
+            if not binfo:
+                break
             bname = binfo.find('span').string
             bupdate = binfo.find(class_="update-info").string
             blink = binfo.find('a')['href']
