@@ -5,10 +5,10 @@
 
 #hitokoto {
     position: relative;
-    top: 30px;
-    font-size: 32px;
+    top: 28px;
+    font-size: 28px;
     font-weight: bold;
-    font-family: Hiragino Sans GB,微软雅黑,黑体,Arial,sans-serif;
+    font-family: Hiragino Sans GB,Microsoft Yahei,黑体,Arial,sans-serif;
 }
 
 #hitokoto a{
@@ -28,11 +28,11 @@
 }
 
 #search-input {
-    height: 40px;
-    width: 80%;
+    height: 30px;
+    width: 20%;
 }
 #search-submit {
-    height: 40px;
+    height: 30px;
     left: 5%;
     position: relative;
     width: 15%;
@@ -47,25 +47,60 @@
 }
 
 body {
-    background: #f9f9f9;
+    background: #efefef;
 }
 
 table {
     align-items: center;
     border-collapse: collapse;
     width: 100%;
+    color: #dc6821;
 }
 table, th, td {
-    border: 1px solid black;
+    border: 1px solid #bfbfbf;
     text-align: center;
 }
 h1, h2, h3, h4, h5 {
     text-align: center;
 }
-
+#AcFun{
+  color:#fd4c5d;
+  text-shadow: 1px 1px 1px #cccccc;
+}
+#bilibili{
+  color:#00a1d6;
+  text-shadow: 1px 1px 1px #cccccc;
+}
+#爱奇艺{
+  color:#99e000;
+  text-shadow: 1px 1px 1px #cccccc;
+}
+#PPTV{
+  color:#3ab8eb;
+  text-shadow: 1px 1px 1px #cccccc;
+}
+#优酷{
+  color:rgba(76, 178, 253, 0.99);
+  text-shadow: 1px 1px 1px #cccccc;
+}
+a{
+  color:#5a5a5a;
+  text-decoration:none;
+  font-size:16px;
+  }
+em{
+  color:#e4722d;
+  font-weight:lighter;
+  font-style:normal;
+}
+a:hover
+{
+  color:#252525;
+  text-decoration:underline;
+}
 #calendar{
-    background:#000;
-    color:#FFF;
+    background:rgb(251, 251, 251);
+    color:#ff5f5f;
     font-size:0.8em;
 }
 #tittle{
@@ -82,7 +117,7 @@ h1, h2, h3, h4, h5 {
     padding:4px 0.55em;
 }
 #today{
-    color:#F00;
+    color:#fd3939;
     font-weight:bold;
 }
 .clear {
