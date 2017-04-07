@@ -23,7 +23,7 @@ def decodeWeekday(wds):
     else:
         return 0
 
-def getBilibili():
+def getBangumi():
     """bilibili.tv processing function"""
     # Get bilibili bangumi HTML
     req = urllib2.Request(BilibiliURL)
@@ -63,5 +63,3 @@ def getBilibili():
             blink = binfo.find('a')['href']
             bangumi.add(wd, bname, bupdate, blink)
     return bangumi
-    
-    

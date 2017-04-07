@@ -6,7 +6,7 @@ from Bangumi import Bangumi
 
 YoukuURL = "http://comic.youku.com"
 
-def getYouku():
+def getBangumi():
     """Youku processing function"""
     # Get Youku bangumi HTML
     req = urllib2.Request(YoukuURL)
@@ -34,5 +34,3 @@ def getYouku():
             blink = btitle.find('a')['href']
             bangumi.add(wd, bname, bupdate, blink)
     return bangumi
-    
-    

@@ -9,11 +9,11 @@ import Tools
 class CLIApp:
     def __init__(self, keywords):
         self.errorCount = 0
-        self.bilibili = Bilibili.getBilibili()
-        self.acfun = AcFun.getAcfun()
-        self.pptv = PPTV.getPPTV()
-        self.iqiyi = Iqiyi.getIqiyi()
-        self.youku = Youku.getYouku()
+        self.bilibili = Bilibili.getBangumi()
+        self.acfun = AcFun.getBangumi()
+        self.pptv = PPTV.getBangumi()
+        self.iqiyi = Iqiyi.getBangumi()
+        self.youku = Youku.getBangumi()
         self.en_keywords = keywords
         # For Chinese printing orz
         self.charset = sys.getfilesystemencoding()

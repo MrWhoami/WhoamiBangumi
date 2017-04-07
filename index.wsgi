@@ -23,11 +23,11 @@ class Index:
         self.dataTimeLimit = 15 * 60
 
     def refreshData(self):
-        self.bilibili = Bilibili.getBilibili()
-        self.acfun = AcFun.getAcfun()
-        self.pptv = PPTV.getPPTV()
-        self.iqiyi = Iqiyi.getIqiyi()
-        self.youku = Youku.getYouku()
+        self.bilibili = Bilibili.getBangumi()
+        self.acfun = AcFun.getBangumi()
+        self.pptv = PPTV.getBangumi()
+        self.iqiyi = Iqiyi.getBangumi()
+        self.youku = Youku.getBangumi()
         self.refreshTime = datetime.now()
 
     def generateHTMLTable(self, bo):

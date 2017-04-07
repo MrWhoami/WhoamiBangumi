@@ -5,7 +5,7 @@ from Bangumi import Bangumi
 
 AcFunURL = "http://www.acfun.cn"
 
-def getAcfun():
+def getBangumi():
     """AcFun processing function"""
     # Get AcFun bangumi HTML
     req = urllib2.Request(AcFunURL)
@@ -33,6 +33,3 @@ def getAcfun():
             bangumi.add(wd, bname, bupdate, blink)
         wd += 1
     return bangumi
-    
-    
-

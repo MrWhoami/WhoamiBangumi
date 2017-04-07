@@ -6,7 +6,7 @@ from Bangumi import Bangumi
 
 IqiyiURL = "http://www.iqiyi.com/dongman/bangumi.html"
 
-def getIqiyi():
+def getBangumi():
     """Youku processing function"""
     # Get Iqiyi bangumi HTML
     req = urllib2.Request(IqiyiURL)
@@ -31,5 +31,3 @@ def getIqiyi():
             blink = binfo.parent.parent['href']
             bangumi.add(wd, bname, bupdate, blink)
     return bangumi
-    
-    

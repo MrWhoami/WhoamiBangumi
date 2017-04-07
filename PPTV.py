@@ -5,7 +5,7 @@ from Bangumi import Bangumi
 
 PPTVURL = "http://cartoon.pptv.com/"
 
-def getPPTV():
+def getBangumi():
     """PPTV processing function"""
     # Get PPTV bangumi HTML
     req = urllib2.Request(PPTVURL)
