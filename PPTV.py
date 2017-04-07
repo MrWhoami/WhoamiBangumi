@@ -19,7 +19,7 @@ def getPPTV():
     # TODO: Change the parser to lxml for better performance
     soup = BeautifulSoup(html, "html.parser")
     # Get a list of a week
-    blist = soup.find(id="ui-tabcont-2709445")
+    blist = soup.find(id="ui-tabcont-2698017")
     wd = 0
     for bday in blist.children:
         # Remove None child
@@ -37,6 +37,3 @@ def getPPTV():
             bangumi.add(wd, bname, bupdate, blink)
         wd += 1
     return bangumi
-    
-    
-
