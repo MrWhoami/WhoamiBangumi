@@ -35,7 +35,7 @@ class Index:
         if bo.errorFlag:
             return '<p><b>{0} 访问失败</b></p>'.format(bo.name.encode('utf-8'))
         # Generate the table header
-        output = '<hr /><h2>{0}</h2>'.format(bo.name.encode('utf-8'))
+        output = '<hr /><h2 id="{0}">{1}</h2>'.format(bo.name.encode('utf-8'), bo.name.encode('utf-8'))
         output += '<table border="1">'
         output += '<tr><th>星期日</th><th>星期一</th><th>星期二</th><th>星期三</th>'
         output += '<th>星期四</th><th>星期五</th><th>星期六</th></tr>'
