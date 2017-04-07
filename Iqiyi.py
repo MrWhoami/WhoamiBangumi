@@ -4,30 +4,27 @@ import urllib2
 from bs4 import BeautifulSoup
 from Bangumi import Bangumi
 
-IqiyiURL = "http://www.iqiyi.com/dongman/bangumi.html"
+class Iqiyi(Bangumi):
+    link = "http://www.iqiyi.com/dongman/bangumi.html"
+    name = u"爱奇艺"
 
-def getBangumi():
-    """Youku processing function"""
-    # Get Iqiyi bangumi HTML
-    req = urllib2.Request(IqiyiURL)
-    try:
+    def getBangumi(self):
+        """Youku processing function"""
+        # Get Iqiyi bangumi HTML
+        req = urllib2.Request(self.link)
         res = urllib2.urlopen(req)
         html = res.read()
-    except urllib2.URLError:
-        return Bangumi.empty(u'爱奇艺', IqiyiURL)
-    bangumi = Bangumi(u'爱奇艺', IqiyiURL)
-    # Give the HTML to BeautifulSoup
-    # TODO: Change the parser to lxml for better performance
-    soup = BeautifulSoup(html, "html.parser")
-    bweek = soup.find(id='widget-qycpweekly')
-    # Get the list of the week
-    for child in bweek.children:
-        if child.name == None:
-            continue
-        wd = int(child['data-day']) + 1
-        binfos = child.find_all('h4')
-        for binfo in binfos:
-            bname, bsep, bupdate = binfo.string.partition(u'：')
-            blink = binfo.parent.parent['href']
-            bangumi.add(wd, bname, bupdate, blink)
-    return bangumi
+        # Give the HTML to BeautifulSoup
+        # TODO: Change the parser to lxml for better performance
+        soup = BeautifulSoup(html, "html.parser")
+        bweek = soup.find(id='widget-qycpweekly')
+        # Get the list of the week
+        for child in bweek.children:
+            if child.name == None:
+                continue
+            wd = int(child['data-day']) + 1
+            binfos = child.find_all('h4')
+            for binfo in binfos:
+                bname, bsep, bupdate = binfo.string.partition(u'：')
+                blink = binfo.parent.parent['href']
+                self.add(wd, bname, bupdate, blink)

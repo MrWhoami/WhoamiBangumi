@@ -1,7 +1,6 @@
 # -*- coding:utf_8 -*-
 from datetime import date
 import sys
-from Bangumi import Bangumi
 import Bilibili, Youku, Iqiyi, PPTV, AcFun
 import Tools
 
@@ -9,11 +8,11 @@ import Tools
 class CLIApp:
     def __init__(self, keywords):
         self.errorCount = 0
-        self.bilibili = Bilibili.getBangumi()
-        self.acfun = AcFun.getBangumi()
-        self.pptv = PPTV.getBangumi()
-        self.iqiyi = Iqiyi.getBangumi()
-        self.youku = Youku.getBangumi()
+        self.bilibili = Bilibili.BiliBili()
+        self.acfun = AcFun.AcFun()
+        self.pptv = PPTV.PPTV()
+        self.iqiyi = Iqiyi.Iqiyi()
+        self.youku = Youku.Youku()
         self.en_keywords = keywords
         # For Chinese printing orz
         self.charset = sys.getfilesystemencoding()
@@ -31,7 +30,7 @@ class CLIApp:
         """Print out the Bangumi class"""
         if bclass.errorFlag:
             print (bclass.name + u' 出错啦 QAQ').encode(self.charset)
-            self.errorFlag += 1
+            self.errorCount += 1
         else:
             print '--------------------------------------------------------------------------------'
             print bclass.name.encode(self.charset).center(80)

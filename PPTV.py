@@ -3,37 +3,34 @@ import urllib2
 from bs4 import BeautifulSoup
 from Bangumi import Bangumi
 
-PPTVURL = "http://cartoon.pptv.com/"
+class PPTV(Bangumi):
+    link = "http://cartoon.pptv.com/"
+    name = u'PPTV'
 
-def getBangumi():
-    """PPTV processing function"""
-    # Get PPTV bangumi HTML
-    req = urllib2.Request(PPTVURL)
-    try:
+    def getBangumi(self):
+        """PPTV processing function"""
+        # Get PPTV bangumi HTML
+        req = urllib2.Request(self.link)
         res = urllib2.urlopen(req)
         html = res.read()
-    except urllib2.URLError:
-        return Bangumi.empty('PPTV', PPTVURL)
-    bangumi = Bangumi('PPTV', PPTVURL)
-    # Give the HTML to BeautifulSoup
-    # TODO: Change the parser to lxml for better performance
-    soup = BeautifulSoup(html, "html.parser")
-    # Get a list of a week
-    blist = soup.find(id="ui-tabcont-2698017")
-    wd = 0
-    for bday in blist.children:
-        # Remove None child
-        if bday.name == None:
-            continue
-        binfolist = bday.find_all("dl")
-        for binfo in binfolist:
-            binfodd = binfo.find_all("dd")
-            try:
-                bupdate = binfodd[2].string
-            except IndexError:
-                bupdate = ''
-            bname = binfodd[0].find('a').string
-            blink = binfodd[0].find('a')['href']
-            bangumi.add(wd, bname, bupdate, blink)
-        wd += 1
-    return bangumi
+        # Give the HTML to BeautifulSoup
+        # TODO: Change the parser to lxml for better performance
+        soup = BeautifulSoup(html, "html.parser")
+        # Get a list of a week
+        blist = soup.find(id="ui-tabcont-2698017")
+        wd = 0
+        for bday in blist.children:
+            # Remove None child
+            if bday.name == None:
+                continue
+            binfolist = bday.find_all("dl")
+            for binfo in binfolist:
+                binfodd = binfo.find_all("dd")
+                try:
+                    bupdate = binfodd[2].string
+                except IndexError:
+                    bupdate = ''
+                bname = binfodd[0].find('a').string
+                blink = binfodd[0].find('a')['href']
+                self.add(wd, bname, bupdate, blink)
+            wd += 1

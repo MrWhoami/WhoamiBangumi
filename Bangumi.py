@@ -1,26 +1,31 @@
 # -*- coding:utf_8 -*-
 import sys
 import re
+import urllib2
 
 class Bangumi:
     """A class for the bangumi in a website"""
-    bangumi = [[], [], [], [], [], [], []]
     name = u'Nothing'
     link = 'http://'
-    errorFlag = False
 
-    def __init__(self, name, link):
-        self.name = name
-        self.link = link
+    def __init__(self):
         self.bangumi = [[], [], [], [], [], [], []]
-        self.errorFlag = False
+        self.errorFlag = True
+        try:
+            self.getBangumi()
+            self.errorFlag = False
+        except urllib2.URLError:
+            self.name += u' - URL Error'
+        except (AttributeError, KeyError):
+            self.name += u' - Analysis Error'
+        except:
+            self.name += u' - Unknown Error'
+            print "Unexpected error:", sys.exc_info()[0]
 
-    @staticmethod
-    def empty(name, link):
-        """Create an empty Bangumi class."""
-        b = Bangumi(name, link)
-        b.errorFlag = True
-        return b
+
+    def getBangumi(self):
+        """A method for child to implement"""
+        pass
 
     def add(self, dayOfWeek, name, update, link=None):
         """Add a new bangumi into the set"""

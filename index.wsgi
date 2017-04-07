@@ -2,7 +2,6 @@
 import web
 import os
 from datetime import datetime, timedelta
-from Bangumi import Bangumi
 import Bilibili, Youku, Iqiyi, PPTV, AcFun
 import Tools
 
@@ -23,11 +22,11 @@ class Index:
         self.dataTimeLimit = 15 * 60
 
     def refreshData(self):
-        self.bilibili = Bilibili.getBangumi()
-        self.acfun = AcFun.getBangumi()
-        self.pptv = PPTV.getBangumi()
-        self.iqiyi = Iqiyi.getBangumi()
-        self.youku = Youku.getBangumi()
+        self.bilibili = Bilibili.BiliBili()
+        self.acfun = AcFun.AcFun()
+        self.pptv = PPTV.PPTV()
+        self.iqiyi = Iqiyi.Iqiyi()
+        self.youku = Youku.Youku()
         self.refreshTime = datetime.now()
 
     def generateHTMLTable(self, bo):
