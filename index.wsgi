@@ -9,7 +9,8 @@ if os.path.basename(__file__) == 'index.wsgi':
     import sae
 
 urls = (
-    '/', 'Index'
+    '/', 'Index',
+    '/get', 'GetTable'
 )
 
 app_root = os.path.dirname(__file__)
@@ -29,6 +30,35 @@ class Index:
         self.youku = Youku.Youku()
         self.refreshTime = datetime.now()
 
+    def getSearch(self, keywords_s, bo):
+        keywords = keywords_s.split()
+        results = bo.search(keywords)
+        resStrs = []
+        for result in results:
+            resStr = '<a href="{blink}">{bname} - {bsrc} - {bdow} - {bupdate}</a>'.format(
+                bdow    = Tools.dow2string(result[0]).encode('utf-8'),
+                bname   = result[1].encode('utf-8'),
+                bupdate = result[2].encode('utf-8'),
+                blink   = result[3].encode('utf-8'),
+                bsrc    = bo.name.encode('utf-8'))
+            resStrs.append(resStr)
+        return resStrs
+
+    def GET(self):
+        i = web.input(keyword=None)
+        searchResult = []
+        if i.keyword:
+            now = datetime.now()
+            if (now - self.refreshTime).total_seconds > self.dataTimeLimit:
+                self.refreshData()
+            searchResult.extend(self.getSearch(i.keyword, self.acfun))
+            searchResult.extend(self.getSearch(i.keyword, self.bilibili))
+            searchResult.extend(self.getSearch(i.keyword, self.iqiyi))
+            searchResult.extend(self.getSearch(i.keyword, self.pptv))
+            searchResult.extend(self.getSearch(i.keyword, self.youku))
+        return render.index(searchResult)
+
+class GetTable:
     def generateHTMLTable(self, bo):
         """Generate a html format table"""
         if bo.errorFlag:
@@ -62,39 +92,21 @@ class Index:
         output += '</table>'
         return output
 
-    def getSearch(self, keywords_s, bo):
-        keywords = keywords_s.split()
-        results = bo.search(keywords)
-        resStrs = []
-        for result in results:
-            resStr = '<a href="{blink}">{bname} - {bsrc} - {bdow} - {bupdate}</a>'.format(
-                bdow    = Tools.dow2string(result[0]).encode('utf-8'),
-                bname   = result[1].encode('utf-8'),
-                bupdate = result[2].encode('utf-8'),
-                blink   = result[3].encode('utf-8'),
-                bsrc    = bo.name.encode('utf-8'))
-            resStrs.append(resStr)
-        return resStrs
-
     def GET(self):
-        i = web.input(keyword=None)
-        now = datetime.now()
-        if (now - self.refreshTime).total_seconds > self.dataTimeLimit:
-            self.refreshData()
-        blists = []
-        blists.append(self.generateHTMLTable(self.acfun))
-        blists.append(self.generateHTMLTable(self.bilibili))
-        blists.append(self.generateHTMLTable(self.iqiyi))
-        blists.append(self.generateHTMLTable(self.pptv))
-        blists.append(self.generateHTMLTable(self.youku))
-        searchResult = []
-        if i.keyword:
-            searchResult.extend(self.getSearch(i.keyword, self.acfun))
-            searchResult.extend(self.getSearch(i.keyword, self.bilibili))
-            searchResult.extend(self.getSearch(i.keyword, self.iqiyi))
-            searchResult.extend(self.getSearch(i.keyword, self.pptv))
-            searchResult.extend(self.getSearch(i.keyword, self.youku))
-        return render.index(blists, searchResult)
+        i = web.input()
+        if i.site == 'acfun':
+            bangumi = AcFun.AcFun()
+        elif i.site == 'bilibili':
+            bangumi = Bilibili.BiliBili()
+        elif i.site == 'pptv':
+            bangumi = PPTV.PPTV()
+        elif i.site == 'iqiyi':
+            bangumi = Iqiyi.Iqiyi()
+        elif i.site == 'youku':
+            bangumi = Youku.Youku()
+        else:
+            return '<p><b>{} not found.</b></p>'.format(i.site)
+        return self.generateHTMLTable(bangumi)
 
 if __name__ == "__main__":
     app = web.application(urls, globals())
