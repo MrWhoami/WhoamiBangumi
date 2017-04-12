@@ -1,13 +1,24 @@
 $def with (result)
 <html>
-
 <head>
     <meta charset="utf-8">
     <title>Whoami 的中国番组列表</title>
     <link rel="icon" href="/static/favicon.ico">
     <link rel="stylesheet" type="text/css" href="/static/index.css">
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
     <script type="text/javascript" src="http://api.hitokoto.us/rand?encode=js&charset=utf-8"></script>
     <script type="text/javascript">
+    //load bangumi tables
+        $$(document).ready(function(){
+            $$('#b0').load("get?site=acfun");
+            $$('#b1').load("get?site=bilibili");
+            $$('#b2').load("get?site=iqiyi");
+            $$('#b3').load("get?site=pptv");
+            $$('#b4').load("get?site=youku");
+        })
+    </script>
+    <script type="text/javascript">
+    //H5 Calendar
         var calendar = {
             dayTable: null, //初始化TABLE
             year: null, //初始化年
@@ -160,12 +171,12 @@ $if result:
         <p>$:r</p>
 </div>
 <div id="total-list">
-    <iframe src="get?site=acfun"></iframe>
-    <iframe src="get?site=bilibili"></iframe>
-    <iframe src="get?site=iqiyi"></iframe>
-    <iframe src="get?site=pptv"></iframe>
-    <iframe src="get?site=youku"></iframe>
-<hr/>
+    <div id="b0"></div>
+    <div id="b1"></div>
+    <div id="b2"></div>
+    <div id="b3"></div>
+    <div id="b4"></div>
+    <hr/>
         <p>
             <b>注意：</b>
             <ol>
